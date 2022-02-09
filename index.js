@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require('path');
+const redditData = require('./data.json');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'/views')) //untuk membuat path jika index.js diakses diluar dari folder templating-ejs di CLI
@@ -19,7 +20,9 @@ app.get('/cats', (req, res) => {
 
 app.get('/r/:subreddit', (req, res) => {
     const {subreddit} = req.params; //destructor function
-    res.render('subreddit', {subreddit})
+    const data = redditData[subreddit]; // ambil dari file json untuk tiap params
+    console.log(data);
+    res.render('subreddit', {...data})
 })
 
 app.get('/rand', (req, res) => {
