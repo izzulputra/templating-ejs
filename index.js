@@ -10,6 +10,13 @@ app.get('/', (req, res) => {
     res.render('home') //express sudah auto akan mencari file views karena sudah default
 })
 
+app.get('/cats', (req, res) => {
+    const cats =[
+        "Joe", "kindy", "cassey", "Woody"
+    ]
+    res.render('cats',{cats})
+})
+
 app.get('/r/:subreddit', (req, res) => {
     const {subreddit} = req.params; //destructor function
     res.render('subreddit', {subreddit})
