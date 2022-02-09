@@ -3,9 +3,10 @@ const app = express();
 const path = require('path');
 const redditData = require('./data.json');
 
+
+app.use(express.static(path.join(__dirname,'public')))
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'/views')) //untuk membuat path jika index.js diakses diluar dari folder templating-ejs di CLI
-
 
 app.get('/', (req, res) => {
     res.render('home') //express sudah auto akan mencari file views karena sudah default
